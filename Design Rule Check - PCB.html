@@ -1,0 +1,465 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD19\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">25.05.2022</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11:52:06</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:03</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc" class="file"><acronym title="C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc">C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">17</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">34</td></tr>
+</table>
+</td>
+</table><a name="IDWNVA0WH4WQX5KHKEEAQOYOGDEFNGAAGXAG1W1LLLSGGUUU1YGCPK"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTZVCQDY0LMWTGFRUCSEUWYZYWKREADXNWCT1RRBC2KZUXQHKF2EL">Unplated multi-layer pad(s) detected</a></td>
+<td class="column2">17</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">17</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDESJA51CIP4ESD0DCCBTNTEQYJLGSDL2FN0GZDYFWOT3AVKFTVWMI">Clearance Constraint (Gap=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUFVB4PVQ3UQEHW2YWOAMPOM5LOVBQYTVMKH4MPLT3WVG4GD3UF5">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMU5MIJVRWI0JGK3M3HBYX1MLHBSCB3SFNJZRCZLQGUVJ2YBSSFMK">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3RYJNJ44U3ZJLIDBE5X4VDQ53LRLTAVSGJBCECHWJPSXFW3MBAVO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTBPDIJJUQICNBBA4PGC1YTWPUWVGICHUU2AR3BE1IHJLM2KZSK">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.4mm) (Air Gap=0.3mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0Y0LZ0LXN5ZBOIUON05FORADOFJ1ATS1FRSCJYCL0JKJO2IYAQXO">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">32</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">34</td>
+</tr>
+</table><br><a name="IDGYNEN0UGOCVVIZH3WRZDWRP5KMISAXIYBJJTQVJ0VMGXDFEVKYQB"><h2>Warnings</h2></a><a name="IDTZVCQDY0LMWTGFRUCSEUWYZYWKREADXNWCT1RRBC2KZUXQHKF2EL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Unplated multi-layer pad(s) detected</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40071.548mil|Location2.X=40136.509mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40071.548mil|Location2.X=40136.509mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True">Pad J39-H(18.72mm,-1.695mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39147.532mil|Location2.X=39212.493mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39147.532mil|Location2.X=39212.493mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True">Pad J39-H(-4.75mm,-1.695mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40071.548mil|Location2.X=40136.509mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40071.548mil|Location2.X=40136.509mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True">Pad J43-H(18.72mm,-1.695mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39147.532mil|Location2.X=39212.493mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39147.532mil|Location2.X=39212.493mil|Location1.Y=34730.429mil|Location2.Y=34795.39mil|Absolute=True">Pad J43-H(-4.75mm,-1.695mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40294.713mil|Location2.X=40302.713mil|Location1.Y=38544.343mil|Location2.Y=38552.343mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40294.713mil|Location2.X=40302.713mil|Location1.Y=38544.343mil|Location2.Y=38552.343mil|Absolute=True">Pad RESET-H(23.665mm,94.455mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38973.516mil|Location2.X=39036.508mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38973.516mil|Location2.X=39036.508mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True">Pad X3-H(-9.195mm,84.755mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39397.532mil|Location2.X=39460.524mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39397.532mil|Location2.X=39460.524mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True">Pad X3-H(1.575mm,84.755mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39945.17mil|Location2.X=40008.162mil|Location1.Y=38420.39mil|Location2.Y=38483.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39945.17mil|Location2.X=40008.162mil|Location1.Y=38420.39mil|Location2.Y=38483.382mil|Absolute=True">Pad X1-H(15.485mm,92.005mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39521.154mil|Location2.X=39584.146mil|Location1.Y=38420.39mil|Location2.Y=38483.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39521.154mil|Location2.X=39584.146mil|Location1.Y=38420.39mil|Location2.Y=38483.382mil|Absolute=True">Pad X1-H(4.715mm,92.005mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39503.375mil|Location2.X=39578.304mil|Location1.Y=38510.878mil|Location2.Y=38585.807mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39503.375mil|Location2.X=39578.304mil|Location1.Y=38510.878mil|Location2.Y=38585.807mil|Absolute=True">Pad X1-H(4.415mm,94.455mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39951.013mil|Location2.X=40025.942mil|Location1.Y=38510.878mil|Location2.Y=38585.807mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39951.013mil|Location2.X=40025.942mil|Location1.Y=38510.878mil|Location2.Y=38585.807mil|Absolute=True">Pad X1-H(15.785mm,94.455mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39397.532mil|Location2.X=39460.524mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39397.532mil|Location2.X=39460.524mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True">Pad X2-H(1.575mm,84.755mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38973.516mil|Location2.X=39036.508mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38973.516mil|Location2.X=39036.508mil|Location1.Y=38134.957mil|Location2.Y=38197.949mil|Absolute=True">Pad X2-H(-9.195mm,84.755mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=37636.335mil|Location2.Y=37699.327mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=37636.335mil|Location2.Y=37699.327mil|Absolute=True">Pad J37-H(20.44mm,72.09mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=35512.319mil|Location2.Y=35575.311mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=35512.319mil|Location2.Y=35575.311mil|Absolute=True">Pad J37-H(20.44mm,18.14mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=35512.319mil|Location2.Y=35575.311mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=35512.319mil|Location2.Y=35575.311mil|Absolute=True">Pad J38-H(20.44mm,18.14mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=37636.335mil|Location2.Y=37699.327mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40140.249mil|Location2.X=40203.241mil|Location1.Y=37636.335mil|Location2.Y=37699.327mil|Absolute=True">Pad J38-H(20.44mm,72.09mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=33057.509mil|Location2.X=40739.721mil|Location1.Y=34509.76mil|Location2.Y=38664.547mil|Absolute=True">Net GND</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDUFVB4PVQ3UQEHW2YWOAMPOM5LOVBQYTVMKH4MPLT3WVG4GD3UF5"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39142.241mil|Location2.X=39386.288mil|Location1.Y=37743.248mil|Location2.Y=37987.295mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39142.241mil|Location2.X=39386.288mil|Location1.Y=37743.248mil|Location2.Y=37987.295mil|Absolute=True">Short-Circuit Constraint: Between Pad C134-1(-0.96mm,77.105mm) on Top Layer And Pad C134-2(-4.26mm,77.105mm) on Top Layer Pads have the same JumperID: 1 but different Nets: GND and DC_IN</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38928.461mil|Location2.X=39172.508mil|Location1.Y=37615.099mil|Location2.Y=37859.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=38928.461mil|Location2.X=39172.508mil|Location1.Y=37615.099mil|Location2.Y=37859.145mil|Absolute=True">Short-Circuit Constraint: Between Pad C141-1(-8.04mm,72.2mm) on Top Layer And Pad C141-2(-8.04mm,75.5mm) on Top Layer Pads have the same JumperID: 1 but different Nets: GND and DC_IN</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID0Y0LZ0LXN5ZBOIUON05FORADOFJ1ATS1FRSCJYCL0JKJO2IYAQXO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40167.912mil|Location2.X=40175.578mil|Location1.Y=35539.982mil|Location2.Y=35547.649mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40167.912mil|Location2.X=40175.578mil|Location1.Y=35539.982mil|Location2.Y=35547.649mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J37-H(20.44mm,18.14mm) on Multi-Layer And Pad J38-H(20.44mm,18.14mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40167.912mil|Location2.X=40175.578mil|Location1.Y=37663.998mil|Location2.Y=37671.664mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40167.912mil|Location2.X=40175.578mil|Location1.Y=37663.998mil|Location2.Y=37671.664mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J37-H(20.44mm,72.09mm) on Multi-Layer And Pad J38-H(20.44mm,72.09mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40100.195mil|Location2.X=40107.862mil|Location1.Y=34759.076mil|Location2.Y=34766.743mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40100.195mil|Location2.X=40107.862mil|Location1.Y=34759.076mil|Location2.Y=34766.743mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J39-H(18.72mm,-1.695mm) on Multi-Layer And Pad J43-H(18.72mm,-1.695mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39176.179mil|Location2.X=39183.846mil|Location1.Y=34759.076mil|Location2.Y=34766.743mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39176.179mil|Location2.X=39183.846mil|Location1.Y=34759.076mil|Location2.Y=34766.743mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad J39-H(-4.75mm,-1.695mm) on Multi-Layer And Pad J43-H(-4.75mm,-1.695mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39425.195mil|Location2.X=39432.861mil|Location1.Y=38162.62mil|Location2.Y=38170.286mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39425.195mil|Location2.X=39432.861mil|Location1.Y=38162.62mil|Location2.Y=38170.286mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad X2-H(1.575mm,84.755mm) on Multi-Layer And Pad X3-H(1.575mm,84.755mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39001.179mil|Location2.X=39008.846mil|Location1.Y=38162.62mil|Location2.Y=38170.286mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=39001.179mil|Location2.X=39008.846mil|Location1.Y=38162.62mil|Location2.Y=38170.286mil|Absolute=True">Hole To Hole Clearance Constraint: (Collision &lt; 0.254mm) Between Pad X2-H(-9.195mm,84.755mm) on Multi-Layer And Pad X3-H(-9.195mm,84.755mm) on Multi-Layer Pad/Via Touching Holes</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35246.829mil|Location2.X=35258.079mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35246.829mil|Location2.X=35258.079mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-104.26mm,1.054mm) from Top Layer to Bottom Layer And Via (-104.76mm,1.054mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35256.671mil|Location2.X=35267.921mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35256.671mil|Location2.X=35267.921mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True">Hole To Hole Clearance Constraint: (0.225mm &lt; 0.254mm) Between Via (-104.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-104.26mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35246.337mil|Location2.X=35257.587mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35246.337mil|Location2.X=35257.587mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True">Hole To Hole Clearance Constraint: (0.226mm &lt; 0.254mm) Between Via (-104.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-104.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35246.829mil|Location2.X=35258.079mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35246.829mil|Location2.X=35258.079mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-104.26mm,2.154mm) from Top Layer to Bottom Layer And Via (-104.76mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35236.494mil|Location2.X=35247.744mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35236.494mil|Location2.X=35247.744mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-104.76mm,1.054mm) from Top Layer to Bottom Layer And Via (-104.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35236.494mil|Location2.X=35247.744mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35236.494mil|Location2.X=35247.744mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-104.76mm,2.154mm) from Top Layer to Bottom Layer And Via (-104.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35087.38mil|Location2.X=35098.63mil|Location1.Y=34627.363mil|Location2.Y=34638.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=35087.38mil|Location2.X=35098.63mil|Location1.Y=34627.363mil|Location2.Y=34638.613mil|Absolute=True">Hole To Hole Clearance Constraint: (0.25mm &lt; 0.254mm) Between Via (-108.56mm,-4.77mm) from Top Layer to Bottom Layer And Via (-108.56mm,-5.22mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34105.096mil|Location2.X=34116.346mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34105.096mil|Location2.X=34116.346mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-133.26mm,1.054mm) from Top Layer to Bottom Layer And Via (-133.76mm,1.054mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34114.939mil|Location2.X=34126.189mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34114.939mil|Location2.X=34126.189mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True">Hole To Hole Clearance Constraint: (0.225mm &lt; 0.254mm) Between Via (-133.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-133.26mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34104.604mil|Location2.X=34115.854mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34104.604mil|Location2.X=34115.854mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True">Hole To Hole Clearance Constraint: (0.226mm &lt; 0.254mm) Between Via (-133.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-133.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34105.096mil|Location2.X=34116.346mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34105.096mil|Location2.X=34116.346mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-133.26mm,2.154mm) from Top Layer to Bottom Layer And Via (-133.76mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34094.762mil|Location2.X=34106.012mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34094.762mil|Location2.X=34106.012mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-133.76mm,1.054mm) from Top Layer to Bottom Layer And Via (-133.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34094.762mil|Location2.X=34106.012mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=34094.762mil|Location2.X=34106.012mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-133.76mm,2.154mm) from Top Layer to Bottom Layer And Via (-133.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40168.088mil|Location2.X=40179.338mil|Location1.Y=38126.871mil|Location2.Y=38138.121mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=40168.088mil|Location2.X=40179.338mil|Location1.Y=38126.871mil|Location2.Y=38138.121mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (20.265mm,83.88mm) from Top Layer to Bottom Layer And Via (20.715mm,83.905mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37530.293mil|Location2.X=37541.543mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37530.293mil|Location2.X=37541.543mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-46.26mm,1.054mm) from Top Layer to Bottom Layer And Via (-46.76mm,1.054mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37540.136mil|Location2.X=37551.386mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37540.136mil|Location2.X=37551.386mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True">Hole To Hole Clearance Constraint: (0.225mm &lt; 0.254mm) Between Via (-46.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-46.26mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37529.801mil|Location2.X=37541.051mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37529.801mil|Location2.X=37541.051mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True">Hole To Hole Clearance Constraint: (0.226mm &lt; 0.254mm) Between Via (-46.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-46.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37530.293mil|Location2.X=37541.543mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37530.293mil|Location2.X=37541.543mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-46.26mm,2.154mm) from Top Layer to Bottom Layer And Via (-46.76mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37519.959mil|Location2.X=37531.209mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37519.959mil|Location2.X=37531.209mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-46.76mm,1.054mm) from Top Layer to Bottom Layer And Via (-46.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37519.959mil|Location2.X=37531.209mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=37519.959mil|Location2.X=37531.209mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-46.76mm,2.154mm) from Top Layer to Bottom Layer And Via (-46.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36388.561mil|Location2.X=36399.811mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36388.561mil|Location2.X=36399.811mil|Location1.Y=34865.528mil|Location2.Y=34876.778mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-75.26mm,1.054mm) from Top Layer to Bottom Layer And Via (-75.76mm,1.054mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36398.404mil|Location2.X=36409.654mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36398.404mil|Location2.X=36409.654mil|Location1.Y=34898.5mil|Location2.Y=34909.75mil|Absolute=True">Hole To Hole Clearance Constraint: (0.225mm &lt; 0.254mm) Between Via (-75.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-75.26mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36388.069mil|Location2.X=36399.319mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36388.069mil|Location2.X=36399.319mil|Location1.Y=34887.673mil|Location2.Y=34898.923mil|Absolute=True">Hole To Hole Clearance Constraint: (0.226mm &lt; 0.254mm) Between Via (-75.26mm,1.629mm) from Top Layer to Bottom Layer And Via (-75.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36388.561mil|Location2.X=36399.811mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36388.561mil|Location2.X=36399.811mil|Location1.Y=34908.835mil|Location2.Y=34920.085mil|Absolute=True">Hole To Hole Clearance Constraint: (0.2mm &lt; 0.254mm) Between Via (-75.26mm,2.154mm) from Top Layer to Bottom Layer And Via (-75.76mm,2.154mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36378.226mil|Location2.X=36389.476mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36378.226mil|Location2.X=36389.476mil|Location1.Y=34876.354mil|Location2.Y=34887.604mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-75.76mm,1.054mm) from Top Layer to Bottom Layer And Via (-75.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36378.226mil|Location2.X=36389.476mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\MICHAL_GOLABEK\Projekty\TOMOGRAF UST 4.0\PROJEKT ELEKTRYCZNY\UST4 MEASURING CARD\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=36378.226mil|Location2.X=36389.476mil|Location1.Y=34898.008mil|Location2.Y=34909.258mil|Absolute=True">Hole To Hole Clearance Constraint: (0.251mm &lt; 0.254mm) Between Via (-75.76mm,2.154mm) from Top Layer to Bottom Layer And Via (-75.785mm,1.604mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
